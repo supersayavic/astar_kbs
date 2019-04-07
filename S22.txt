@@ -1,0 +1,4 @@
+Gegenstand;x;y
+Medaillon;5;2
+Medaillon;10;15
+Krone;7;15
