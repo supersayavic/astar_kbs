@@ -5,4 +5,9 @@ class State:
         self.m
 
     def __eq__(self, other):
-        
+        if self is other:
+            return True
+        elif type(self) != type(other):
+            return False
+        else:
+            return self.name == other.name
