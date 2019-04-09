@@ -122,8 +122,6 @@ def astar(maze, start, end, medaillons):
 
 
             # Create the f, g, and h values
-            # if current_node.medaillon == true and child.value == 0
-            # child.g = current_node.g + 2
             if child.medaillon and str(maze[node_position[0]][node_position[1]]) == str(0):
                 child.g = current_node.g + 2
             else:
@@ -137,7 +135,7 @@ def astar(maze, start, end, medaillons):
                 if child == open_node:
                     if child.g > open_node.g:
                         betterChildFound = True
-                        break # will only break inner for loop not outer that was the problem here # FAIL
+                        break
                     else:
                         betterChildFound= True
                         open_node.g = child.g
@@ -153,7 +151,6 @@ def astar(maze, start, end, medaillons):
 
 
 def calcHvalue (node, end_node, medaillons):
-    # raise BaseException('Not yet implemented')
     if(node.medaillon):
         return abs(node.position[0]-end_node.position[0]) + abs(node.position[1]-end_node.position[1])
     else:
@@ -167,8 +164,8 @@ def main():
     parser = argparse.ArgumentParser(description='WBS foo')
     parser.add_argument('-x', dest='x', help='X Start coordingate', nargs='?', type=int, required=True)
     parser.add_argument('-y', dest='y', help='Y Start coordingate', nargs='?', type=int, required=True)
-    parser.add_argument('--spielfeld', dest='file', help='Set field from a file', nargs='?', type=argparse.FileType('r'), required=True)
-    parser.add_argument('--other', dest='medaillon', help='Set items from a file', nargs='?', type=argparse.FileType('r'), required=True)
+    parser.add_argument('--field', dest='file', help='Set field from a file', nargs='?', type=argparse.FileType('r'), required=True)
+    parser.add_argument('--items', dest='medaillon', help='Set items from a file', nargs='?', type=argparse.FileType('r'), required=True)
     args = parser.parse_args()
 
     file = args.file
@@ -187,10 +184,8 @@ def main():
 
     path = astar(field, start, end, medaillons)
 
-    #astar muss path und kosten returnen
     for x in path:
         print(x)
 
-# main methode aufrufen wenn datei ausgeführt wird
 if __name__ == '__main__':
     main()
