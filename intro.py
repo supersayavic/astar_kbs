@@ -147,7 +147,6 @@ def astar(maze, start, end, medaillons):
 
             # Add the child to the open list
             open_list.append(child)
-    print("No Path was found to bad")
 
 
 def calcHvalue (node, end_node, medaillons):
@@ -184,8 +183,11 @@ def main():
 
     path = astar(field, start, end, medaillons)
 
-    for x in path:
-        print(x)
+    if(not path):
+        print('No path was found. Start position is surrounded by water.')
+    else:
+        for x in path:
+            print(x)
 
 if __name__ == '__main__':
     main()
